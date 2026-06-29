@@ -6,6 +6,8 @@ from __future__ import annotations
 import tempfile
 from pathlib import Path
 
+from build_prompt_pack import build_prompt
+from check_coverage import main as check_coverage_main
 from check_sections import check
 from generate_docx import unique_output_path
 from render_spec import normalize_spec
@@ -67,11 +69,25 @@ def test_unique_output_path() -> None:
         assert unique_output_path(base).name == "output-v03.docx"
 
 
+def test_prompt_pack() -> None:
+    prompt = build_prompt("通知", "起草一份通知。", "会议决定：按时报送。")
+    assert "# gongwen-draft Offline Prompt Pack" in prompt
+    assert "## 通知" in prompt
+    assert "会议决定：按时报送。" in prompt
+    assert "## 请示" not in prompt
+
+
+def test_coverage() -> None:
+    check_coverage_main()
+
+
 def main() -> None:
     test_render_spec()
     test_high_risk_lint()
     test_punctuation_lint()
     test_unique_output_path()
+    test_prompt_pack()
+    test_coverage()
     print("OK: gongwen-draft self-tests passed.")
 
 

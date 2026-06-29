@@ -1,6 +1,6 @@
 ---
 name: gongwen-draft
-description: Draft, revise, polish, review, lint, and export Chinese党政机关公文 and政务材料 with authority-first guardrails, controlled Markdown/JSON specs, strict official-document font checks, and optional Word .docx generation with generic red-head draft headers when authorized values are supplied. Use when the user asks for gongwen-draft, 公文, 公文写作, 公文起草, 机关文稿, 政务写作, 通知, 请示, 报告, 函, 纪要, 通报, 批复, 意见, 决定, 公告, 通告, 工作总结, 调研报告, 汇报材料, 情况专报, 讲话稿, 材料改写, 公文润色, 格式审核, Word公文导出, JSON公文规格, 红头版头, 发文机关标志, 发文字号, 签发人, or to turn notes into formal official-style Chinese documents.
+description: Draft, revise, polish, review, lint, and export Chinese党政机关公文 and政务材料 with authority-first guardrails, controlled Markdown/JSON specs, offline prompt-pack generation, strict official-document font checks, and optional Word .docx generation with generic red-head draft headers when authorized values are supplied. Use when the user asks for gongwen-draft, 公文, 公文写作, 公文起草, 机关文稿, 政务写作, 通知, 请示, 报告, 函, 纪要, 通报, 批复, 意见, 决定, 公告, 通告, 工作总结, 工作方案, 调研报告, 汇报材料, 简报, 情况专报, 讲话稿, 回复函, 材料改写, 公文润色, 格式审核, Word公文导出, 离线提示词, JSON公文规格, 红头版头, 发文机关标志, 发文字号, 签发人, or to turn notes into formal official-style Chinese documents.
 ---
 
 # Gongwen Draft
@@ -52,9 +52,11 @@ Treat the gathered local references as guidance, not as permission to invent fac
 
 - Before exporting, form a clean Markdown draft. Avoid Markdown tables, bold markers, block quotes, and decorative bullets unless the user requested an informal reading draft.
 - If using JSON spec, run `scripts/render_spec.py <spec.json> -o <draft.md>` before lint/export.
+- For offline assistants or web chat tools that cannot install skills, run `scripts/build_prompt_pack.py --doc-type <doc-type> --task <task> -o <prompt.md>` and paste the generated prompt pack into the target tool.
 - Run `scripts/check_sections.py <doc-type> <draft.md>` when reviewing or before file export.
 - Run `scripts/check_fonts.py --verify-assets` after changing bundled fonts, then run `scripts/check_fonts.py --draft <draft.md>` before Word export. If authorized font files are in `assets/fonts`, use `--install-assets`.
 - Run `scripts/generate_docx.py <draft.md> -o <output.docx> --doc-type <doc-type> --install-font-assets` when the user asks for Word output. The script creates `-vNN` files instead of overwriting unless `--overwrite` is explicit.
+- Run `scripts/check_coverage.py` after changing document types, templates, README coverage language, or lint document-type lists.
 - For generic红头版头 output, use controlled front matter such as `issuer_mark`, `doc_number`, and `issue_person`; never invent real机关名称、发文字号、签发人、印章 or approval status.
 - Do not silently replace required公文字体 with generic fonts. If fonts are missing, stop and use official/authorized channels.
 - If Python lacks `python-docx`, install or use the bundled workspace Python/libraries when available.

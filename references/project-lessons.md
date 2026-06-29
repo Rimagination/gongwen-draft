@@ -46,6 +46,15 @@ This file summarizes public projects inspected from the user's `gongwen-writing`
 - Hide first-page page numbers by default and make odd/even page placement configurable.
 - Preserve quick command ergonomics without making them the only way to trigger the skill.
 
+## Differentiators To Keep Improving
+
+- Keep the user-facing README short and practical even as engineering depth grows.
+- Treat all 15 statutory公文 and 8 common formal-material categories as first-class templates, not partial fallbacks.
+- Use `scripts/check_coverage.py` as a release gate whenever document-type support changes.
+- Keep stricter punctuation and font gates than most static skills: fail loudly on missing fonts and flag English punctuation in Chinese prose.
+- Provide an offline prompt-pack generator without requiring a large generated `dist/` tree in the portable skill package.
+- Preserve explicit community citations while making official standards and user unit templates the higher authority.
+
 ## Rules Not To Adopt Blindly
 
 - Do not require user confirmation at every step for simple drafting; ask only when missing facts would cause fabrication or wrong文种.

@@ -1,5 +1,5 @@
-# Local font asset catalog for gongwen-draft.
-# These assets are for local authorized use. Confirm licensing before redistribution.
+# Bundled font asset catalog for gongwen-draft.
+# Confirm licensing and organizational authorization before use or redistribution.
 
 [[fonts]]
 role = "issuer,title"
