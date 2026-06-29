@@ -1,8 +1,5 @@
-# Local/private font assets. Do not publish without redistribution permission.
-assets/fonts/*.ttf
-assets/fonts/*.TTF
-assets/fonts/*.otf
-assets/fonts/*.OTF
+# Bundled font assets are tracked for redistribution to skill users.
+# Do not add private/unlicensed font files to assets/fonts/.
 
 # Generated documents and local caches.
 *.docx
