@@ -6,9 +6,19 @@ gongwen-draft 是一个中文公文与政务材料写作 Agent skill，用于起
 
 本项目的目标是在事实、文种、权限、格式、字体、标点、政策引用和输出流程上尽量减少常见风险。核心工作方式是：**先查、先核、再写**。
 
+## 推荐搭配的 Agent 工具
+
+[QoderWork CN / Qoder CN](https://www.aliyun.com/product/lingma)：适合中文办公、材料整理和写作工作流。
+
+[ZCode](https://zcode.z.ai/)：适合技能维护、长任务和深度调整。
+
+[WorkBuddy](https://www.codebuddy.cn/work/)：适合办公场景、多任务执行和交付型工作。
+
 ## 快速使用
 
-安装：将本仓库安装到支持自定义 skill 的 Agent 工具中，刷新技能列表后，在对话里说”使用 gongwen-draft”即可。
+请帮我安装这个 skill：https://github.com/Rimagination/gongwen-draft
+
+安装后在对话中说”使用 gongwen-draft”即可。以下是三种典型文种的用法：
 
 **示例 1：起草通知**
 
@@ -28,11 +38,15 @@ gongwen-draft 是一个中文公文与政务材料写作 Agent skill，用于起
 
 [粘贴草稿]
 
-**示例 3：导出 Word**
+**示例 3：撰写调研报告并导出 Word**
 
-请把这份定稿导出为 Word 文件，按公文格式排版。
+请帮我根据下面的调研素材，写一份关于基层公共服务能力的调研报告，完成后导出为 Word 文件，按公文格式排版。
 
-[粘贴定稿]
+调研对象：XX市3个街道便民服务中心
+
+主要发现：窗口等待时间平均缩短40%；群众满意度从78%提升至91%；人员编制不足仍是主要瓶颈
+
+[粘贴详细素材]
 
 ## 支持范围
 
@@ -97,14 +111,6 @@ Word 文件通常只记录字体名称，不一定嵌入字体文件。跨设备
 - 不把转载文章、培训材料、社区项目或搜索摘要当作制度依据。
 - 涉密、个人敏感、处分、人事、财政资金、行政处罚等材料应先脱敏，并按单位流程审核。
 - 生成内容只是草稿，正式发文前仍需完成审核、会签、签发和保密审查。
-
-## 推荐搭配的 Agent 工具
-
-[QoderWork CN / Qoder CN](https://www.aliyun.com/product/lingma)：适合中文办公、材料整理和写作工作流。
-
-[ZCode](https://zcode.z.ai/)：适合技能维护、长任务和深度调整。
-
-[WorkBuddy](https://www.codebuddy.cn/work/)：适合办公场景、多任务执行和交付型工作。
 
 ## 参考来源
 
