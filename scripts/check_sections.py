@@ -35,8 +35,9 @@ DOC_TYPES = {
     "回复函",
 }
 
-FRONT_RE = re.compile(r"\A---\s*\n(?P<body>.*?)\n---\s*\n?", re.S)
 CJK_RE = re.compile(r"[\u3400-\u4dbf\u4e00-\u9fff]")
+
+from front_matter import parse_front_matter, strip_front_matter
 ASCII_PUNCT_NEAR_CJK_RE = re.compile(
     r"[\u3400-\u4dbf\u4e00-\u9fff][,:;!?()\[\]{}\"']|"
     r"[,:;!?()\[\]{}\"'][\u3400-\u4dbf\u4e00-\u9fff]|"
@@ -46,24 +47,6 @@ TECH_TOKEN_RE = re.compile(
     r"`[^`]*`|https?://\S+|www\.\S+|[\w.+-]+@[\w.-]+\.\w+|[A-Za-z]:\\[^\s]+|/[^\s]+"
 )
 
-
-def strip_front_matter(text: str) -> str:
-    return FRONT_RE.sub("", text, count=1)
-
-
-def parse_front_matter(text: str) -> dict[str, str]:
-    match = FRONT_RE.match(text)
-    if not match:
-        return {}
-
-    meta: dict[str, str] = {}
-    for raw in match.group("body").splitlines():
-        line = raw.strip()
-        if not line or line.startswith("- ") or ":" not in line:
-            continue
-        key, value = line.split(":", 1)
-        meta[key.strip()] = value.strip().strip('"').strip("'")
-    return meta
 
 
 def title_from_text(text: str) -> str:
@@ -130,8 +113,7 @@ def punctuation_issues(body: str) -> list[tuple[str, str]]:
 
 def check(doc_type: str, text: str) -> list[tuple[str, str]]:
     issues: list[tuple[str, str]] = []
-    meta = parse_front_matter(text)
-    body = strip_front_matter(text)
+    meta, body = parse_front_matter(text)
     compact = re.sub(r"\s+", "", body)
     title = title_from_text(body)
     doc_number = meta.get("doc_number", "").strip()

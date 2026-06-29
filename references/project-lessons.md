@@ -50,7 +50,7 @@ This file summarizes public projects inspected from the user's `gongwen-writing`
 
 - Keep the user-facing README short and practical even as engineering depth grows.
 - Treat all 15 statutory公文 and 8 common formal-material categories as first-class templates, not partial fallbacks.
-- Use `scripts/check_coverage.py` as a release gate whenever document-type support changes.
+- Use `scripts/check_type_consistency.py` as a release gate whenever document-type support changes.
 - Use `scripts/prepare_dossier.py` to make messy素材 usable before drafting, instead of only relying on prompt instructions.
 - Use `scripts/policy_research.py` and `scripts/check_citations.py` so source-sensitive drafts move through official-source research before writing.
 - Use `scripts/check_language.py` to support润色 as a verifiable review surface, not just a style promise.

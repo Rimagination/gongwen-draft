@@ -32,7 +32,8 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 SKILL_DIR = SCRIPT_DIR.parent
 ASSET_FONT_DIR = SKILL_DIR / "assets" / "fonts"
 ASSET_FONT_CATALOG = ASSET_FONT_DIR / "catalog.toml"
-FRONT_RE = re.compile(r"\A---\s*\n(?P<body>.*?)\n---\s*\n?", re.S)
+
+from front_matter import parse_front_matter, meta_text
 
 OFFICIAL_FOUNDER_OFFICE_URL = "https://www.foundertype.com/index.php/FontInfo/get_font_office.html"
 
@@ -66,46 +67,6 @@ FONT_ALIASES = {
     "kaiti": {"楷体"},
     "simkai": {"楷体"},
 }
-
-
-def parse_front_matter(text: str) -> dict[str, object]:
-    match = FRONT_RE.match(text)
-    if not match:
-        return {}
-
-    meta: dict[str, object] = {}
-    current_list: list[str] | None = None
-    current_key: str | None = None
-
-    for raw in match.group("body").splitlines():
-        line = raw.rstrip()
-        if not line.strip():
-            continue
-        if line.lstrip().startswith("- ") and current_list is not None:
-            current_list.append(line.split("- ", 1)[1].strip())
-            continue
-        if ":" in line:
-            key, value = line.split(":", 1)
-            key = key.strip()
-            value = value.strip().strip('"').strip("'")
-            current_key = key
-            if value:
-                meta[key] = value
-                current_list = None
-            else:
-                current_list = []
-                meta[key] = current_list
-        elif current_key:
-            meta[current_key] = line.strip()
-
-    return meta
-
-
-def meta_text(meta: dict[str, object], key: str) -> str:
-    value = meta.get(key, "")
-    if isinstance(value, list):
-        return "；".join(str(item).strip() for item in value if str(item).strip())
-    return str(value).strip()
 
 
 def build_font_config(meta: dict[str, object] | None = None) -> dict[str, str]:
@@ -387,6 +348,8 @@ def install_assets_for_missing(fonts: dict[str, str]) -> list[Path]:
 
 
 def main() -> None:
+    if sys.stdout and hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--draft", help="Controlled Markdown draft whose font front matter should be checked")
     parser.add_argument("--install-assets", action="store_true", help="Install matching authorized fonts from assets/fonts for the current Windows user")
@@ -410,7 +373,7 @@ def main() -> None:
 
     meta = {}
     if args.draft:
-        meta = parse_front_matter(Path(args.draft).read_text(encoding="utf-8-sig"))
+        meta, _ = parse_front_matter(Path(args.draft).read_text(encoding="utf-8-sig"))
     fonts = build_font_config(meta)
 
     if args.install_assets:

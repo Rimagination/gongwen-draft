@@ -9,7 +9,7 @@ from pathlib import Path
 from build_prompt_pack import build_prompt
 from check_citations import check_citations
 from check_language import check_language
-from check_coverage import main as check_coverage_main
+from check_type_consistency import main as check_type_consistency_main
 from check_sections import check
 from generate_docx import unique_output_path
 from policy_research import build_policy_research
@@ -81,8 +81,8 @@ def test_prompt_pack() -> None:
     assert "## 请示" not in prompt
 
 
-def test_coverage() -> None:
-    check_coverage_main()
+def test_type_consistency() -> None:
+    check_type_consistency_main()
 
 
 def test_material_dossier() -> None:
@@ -138,7 +138,7 @@ def main() -> None:
     test_punctuation_lint()
     test_unique_output_path()
     test_prompt_pack()
-    test_coverage()
+    test_type_consistency()
     test_material_dossier()
     test_language_lint()
     test_policy_research_pack()

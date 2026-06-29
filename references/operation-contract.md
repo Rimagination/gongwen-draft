@@ -54,9 +54,10 @@ Use controlled Markdown or JSON spec, then:
 
 1. `scripts/render_spec.py spec.json -o draft.md` if input is JSON.
 2. `scripts/check_citations.py draft.md` when the draft includes policy/current-source claims.
-3. `scripts/check_sections.py <doc-type> draft.md`.
-4. `scripts/check_fonts.py --draft draft.md`.
-5. `scripts/generate_docx.py draft.md -o output.docx --doc-type <doc-type> --install-font-assets`.
+3. `scripts/check_language.py draft.md` when polishing or reviewing high-stakes drafts.
+4. `scripts/check_sections.py <doc-type> draft.md`.
+5. `scripts/check_fonts.py --draft draft.md`.
+6. `scripts/generate_docx.py draft.md -o output.docx --doc-type <doc-type> --install-font-assets`.
 
 ## Source Modes
 

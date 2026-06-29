@@ -55,6 +55,8 @@ Use this four-position question set before drafting:
 
 ## Export Pipeline
 
+> This is a simplified minimum pipeline. The complete pre-export sequence (including citation checking and language lint) is documented in `SKILL.md` Lint And Export.
+
 1. Produce controlled Markdown. See `format-output.md`.
 2. Run:
 

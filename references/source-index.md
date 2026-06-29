@@ -93,7 +93,7 @@ This skill was built from local materials collected under `D:\微信推送\公�
 ## GitHub Projects Inspected For Engineering Patterns
 
 - `KaguraNanaga/official-document-writing-skill`: template/checklist-oriented skill.
-- `zhaohui-yang/official-document-drafting`: modular Codex skill with doc-type routing, examples, tests, and Word export.
+- `zhaohui-yang/official-document-drafting`: modular Agent skill with doc-type routing, examples, tests, and Word export.
 - `wzbwan/gongwen-format-skill`: deterministic controlled Markdown/JSON to `.docx` formatting skill.
 - `Aether-liusiqi/wenshu`: compact 22-document writing skill with examples, structure checker, and Word export.
 - `hehecat/gongwen`: front-end A4 preview and DOCX export tool.

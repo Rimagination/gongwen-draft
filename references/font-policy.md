@@ -12,7 +12,7 @@ Required fonts:
 - `仿宋_GB2312`: body and lower headings.
 - `黑体`: first-level headings.
 - `楷体_GB2312`: second-level headings.
-- `宋体`: page number footer.
+- `宋体`: page number footer. **Not bundled** — expected to be pre-installed via the operating system (ships with all Chinese editions of Windows as SimSun). On non-Chinese systems, install SimSun manually before export.
 
 Do not silently replace these with Noto, Microsoft YaHei, SimSun, or other generic Chinese fonts. If the required fonts are missing, stop export and report exactly which fonts are missing.
 

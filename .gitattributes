@@ -1,0 +1,12 @@
+# Ensure consistent text encoding across platforms.
+* text=auto
+
+# Font binaries must not be treated as text.
+*.ttf binary
+*.TTF binary
+*.otf binary
+*.OTF binary
+*.ttc binary
+
+# PNG banner image.
+*.png binary

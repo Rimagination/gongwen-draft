@@ -65,12 +65,12 @@ Treat the gathered local references as guidance, not as permission to invent fac
 - Run `scripts/check_language.py <draft.md>` when polishing, removing AI-like wording, or reviewing high-stakes drafts.
 - Run `scripts/check_fonts.py --verify-assets` after changing bundled fonts, then run `scripts/check_fonts.py --draft <draft.md>` before Word export. If authorized font files are in `assets/fonts`, use `--install-assets`.
 - Run `scripts/generate_docx.py <draft.md> -o <output.docx> --doc-type <doc-type> --install-font-assets` when the user asks for Word output. The script creates `-vNN` files instead of overwriting unless `--overwrite` is explicit.
-- Run `scripts/check_coverage.py` after changing document types, templates, README coverage language, or lint document-type lists.
+- Run `scripts/check_type_consistency.py` after changing document types, templates, README coverage language, or lint document-type lists.
 - For generic红头版头 output, use controlled front matter such as `issuer_mark`, `doc_number`, and `issue_person`; never invent real机关名称、发文字号、签发人、印章 or approval status.
 - Do not silently replace required公文字体 with generic fonts. If fonts are missing, stop and use official/authorized channels.
 - If Python lacks `python-docx`, install or use the bundled workspace Python/libraries when available.
 - Keep generated files outside the skill folder unless the user explicitly asks otherwise.
-- If the user asks for a deliverable but not the format, ask whether they want Markdown, Word `.docx`, PDF, or both Word and PDF.
+- If the user asks for a deliverable but not the format, ask whether they want Markdown or Word `.docx`.
 - Community projects inspired this workflow; cite them when explaining the design or publishing derivative project documentation.
 
 ## Output Patterns
