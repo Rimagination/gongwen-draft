@@ -107,8 +107,7 @@ Word 文件通常只记录字体名称，不一定嵌入字体文件。跨设备
 
 社区项目仅作为工程设计和使用体验参考；当其内容与官方标准、当前政策或用户单位模板不一致时，应以后者为准。
 
-<details>
-<summary>展开查看参考的社区项目</summary>
+### 参考的社区项目
 
 | 参考项目 | 借鉴重点 |
 | --- | --- |
@@ -129,5 +128,3 @@ Word 文件通常只记录字体名称，不一定嵌入字体文件。跨设备
 | [linhut/document-ai-assistant](https://github.com/linhut/document-ai-assistant) | 模板管理、格式检测、字体校验、预览下载和本地优先处理。 |
 | [kairiclabs/gejian](https://github.com/kairiclabs/gejian) | 将格式检查作为独立产品能力，先做高信号规则再逐步扩展。 |
 | [cycleuser/Skills official-document-writer](https://github.com/cycleuser/Skills/tree/main/skills/official-document-writer) | 轻量注册表 skill 的包装方式、快速命令和低门槛触发体验。 |
-
-</details>
