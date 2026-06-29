@@ -16,7 +16,7 @@ Use sources in this order:
 4. Public media or training articles, only as background wording or writing method, not as authority.
 5. Community projects, only as engineering and workflow references.
 
-For current or policy-sensitive claims, verify source name, publish date, event date, and issuing body before writing them as facts.
+For current or policy-sensitive claims, use `references/policy-research.md`: verify source name, publish date, event date, issuing body, stable URL, and applicability before writing them as facts.
 
 ## Material Ledger
 

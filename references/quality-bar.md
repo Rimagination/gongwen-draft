@@ -42,6 +42,7 @@ Use this file to judge whether `gongwen-draft` is better than a generic公文写
 9. It should be source-aware.
    - Official rules and verified current sources outrank community skills, media articles, and training notes.
    - Community references should be cited when the skill design is described.
+   - Policy-sensitive drafts should move through a source ledger and citation check before drafting.
 
 10. It should not make the user fight the tool.
     - Ask concise questions.
@@ -54,6 +55,7 @@ Compared with many lightweight community skills, `gongwen-draft` should add:
 
 - Explicit community citations and source hierarchy.
 - A fact-ledger discipline before drafting.
+- A policy-research workflow and citation checker that separate official policy basis from media/background material.
 - A material intake workflow that separates source table, facts, user judgments, to-verify items, and suggested wording.
 - A language-polishing workflow that can normalize, tighten, formalize, de-risk, or rebuild without inventing facts.
 - High-risk linting as a first-class workflow step.

@@ -1,4 +1,4 @@
 interface:
   display_name: "公文 Draft"
-  short_description: "权威材料驱动的公文起草、审核、JSON 规格与带字体校验的红头 Word 导出"
-  default_prompt: "Use $gongwen-draft to draft, review, lint, render JSON specs, or export a practical official-style Chinese document with generic red-head Word output and strict official-document font checks."
+  short_description: "先查政策、再核引用的公文起草、审核、润色与带字体校验的 Word 导出"
+  default_prompt: "Use $gongwen-draft to research official policy sources, check citations, draft, review, polish, and export a practical official-style Chinese document with strict font checks."

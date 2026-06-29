@@ -26,6 +26,15 @@ jobs:
         run: |
           printf '2026年6月30日，区水利局完成12项排查。计划取得显著成效。\n' > /tmp/materials.md
           python scripts/prepare_dossier.py /tmp/materials.md --task "整理防汛情况专报" -o /tmp/dossier.md
+      - name: Policy citation smoke test
+        run: |
+          python scripts/policy_research.py --topic "公共数据授权运营" --department ndrc.gov.cn --url "https://www.gov.cn/zhengce/content/2026-01/01/content_0000000.htm" -o /tmp/policy-ledger.md
+          cat > /tmp/citations.md <<'EOF'
+          | 编号 | 文件或讲话标题 | 发布机关 | 文号 | 发布日期 | 来源URL | 来源等级 | 写入正文方式 | 核验状态 |
+          | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+          | C1 | 国务院关于某项工作的意见 | 国务院 | 国发〔2026〕1号 | 2026年1月1日 | https://www.gov.cn/zhengce/content/2026-01/01/content_0000000.htm | 政策原文 | 作为依据 | 已核实 |
+          EOF
+          python scripts/check_citations.py /tmp/citations.md --require-citations
       - name: Font asset catalog
         run: python scripts/check_fonts.py --verify-assets
       - name: Build sample offline prompt pack

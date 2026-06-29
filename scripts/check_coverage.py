@@ -102,6 +102,10 @@ def main() -> None:
         fail("README must state 8 extended formal-material categories.")
     if "后续将逐步补充专用模板" in readme:
         fail("README still claims extended templates are incomplete.")
+    if "先查、先核、再写" not in readme:
+        fail("README must state the policy-first workflow.")
+    if "policy-research" not in readme or "citation checker" not in readme:
+        fail("README must mention policy-research and citation checker differentiators.")
 
     print("OK: document-type coverage is complete and consistent.")
 

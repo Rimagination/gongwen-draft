@@ -7,10 +7,12 @@ import tempfile
 from pathlib import Path
 
 from build_prompt_pack import build_prompt
+from check_citations import check_citations
 from check_language import check_language
 from check_coverage import main as check_coverage_main
 from check_sections import check
 from generate_docx import unique_output_path
+from policy_research import build_policy_research
 from prepare_dossier import build_dossier
 from render_spec import normalize_spec
 
@@ -105,6 +107,31 @@ def test_language_lint() -> None:
     assert "口语或网络表达" in messages
 
 
+def test_policy_research_pack() -> None:
+    pack = build_policy_research(
+        "公共数据授权运营",
+        departments=["ndrc.gov.cn"],
+        urls=["https://www.gov.cn/zhengce/content/2024-01/01/content_0000000.htm"],
+    )
+    assert "政策研究台账" in pack
+    assert "site:gov.cn 公共数据授权运营 政策 文件 最新" in pack
+    assert "site:ndrc.gov.cn 公共数据授权运营 政策 文件 通知" in pack
+    assert "可引用政策来源台账" in pack
+    assert any(issue.severity == "error" for issue in check_citations(pack, require_citations=True))
+
+
+def test_citation_checker() -> None:
+    valid = (
+        "| C1 | 国务院关于某项工作的意见 | 国务院 | 国发〔2026〕1号 | "
+        "2026年1月1日 | https://www.gov.cn/zhengce/content/2026-01/01/content_0000000.htm | 政策原文 | 作为依据 | 已核实 |\n"
+    )
+    assert not [issue for issue in check_citations(valid, require_citations=True) if issue.severity == "error"]
+
+    invalid = "依据某文章： https://github.com/example/policy-note"
+    issues = check_citations(invalid, require_citations=True)
+    assert any(issue.severity == "error" and "不能作为政策依据" in issue.message for issue in issues)
+
+
 def main() -> None:
     test_render_spec()
     test_high_risk_lint()
@@ -114,6 +141,8 @@ def main() -> None:
     test_coverage()
     test_material_dossier()
     test_language_lint()
+    test_policy_research_pack()
+    test_citation_checker()
     print("OK: gongwen-draft self-tests passed.")
 
 

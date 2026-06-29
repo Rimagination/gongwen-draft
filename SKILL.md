@@ -1,6 +1,6 @@
 ---
 name: gongwen-draft
-description: Draft, revise, polish, review, lint, and export Chinese党政机关公文 and政务材料 with authority-first guardrails, material dossier/fact-ledger intake, language polishing, controlled Markdown/JSON specs, offline prompt-pack generation, strict official-document font checks, and optional Word .docx generation with generic red-head draft headers when authorized values are supplied. Use when the user asks for gongwen-draft, 公文, 公文写作, 公文起草, 机关文稿, 政务写作, 素材收集, 素材整理, 事实台账, 语言润色, 通知, 请示, 报告, 函, 纪要, 通报, 批复, 意见, 决定, 公告, 通告, 工作总结, 工作方案, 调研报告, 汇报材料, 简报, 情况专报, 讲话稿, 回复函, 材料改写, 公文润色, 格式审核, Word公文导出, 离线提示词, JSON公文规格, 红头版头, 发文机关标志, 发文字号, 签发人, or to turn notes into formal official-style Chinese documents.
+description: Draft, revise, polish, review, lint, and export Chinese党政机关公文 and政务材料 with authority-first guardrails, policy-research/citation checking, material dossier/fact-ledger intake, language polishing, controlled Markdown/JSON specs, offline prompt-pack generation, strict official-document font checks, and optional Word .docx generation with generic red-head draft headers when authorized values are supplied. Use when the user asks for gongwen-draft, 公文, 公文写作, 公文起草, 机关文稿, 政务写作, 政策检索, 政策依据, 引用核验, 领导讲话, 会议精神, 素材收集, 素材整理, 事实台账, 语言润色, 通知, 请示, 报告, 函, 纪要, 通报, 批复, 意见, 决定, 公告, 通告, 工作总结, 工作方案, 调研报告, 汇报材料, 简报, 情况专报, 讲话稿, 回复函, 材料改写, 公文润色, 格式审核, Word公文导出, 离线提示词, JSON公文规格, 红头版头, 发文机关标志, 发文字号, 签发人, or to turn notes into formal official-style Chinese documents.
 ---
 
 # Gongwen Draft
@@ -13,11 +13,12 @@ Treat the gathered local references as guidance, not as permission to invent fac
 
 1. Identify the task: `draft`, `revise`, `review`, `format`, `template`, `extract`, `export`, or `training`.
 2. Apply four-position routing: 文种 -> 行文方向 -> 格式/交付 -> 语言口径.
-3. For messy materials, build a dossier with `scripts/prepare_dossier.py` or maintain a fact ledger: `已确认事实`, `用户判断`, `待核实`, `建议措辞`.
-4. Check five anchors: purpose, audience, facts, structure, tone.
-5. If key facts are missing, either ask 1-3 focused questions or produce a fillable skeleton with bracketed placeholders.
-6. Draft with this order: define purpose -> choose文种 -> structure content -> write concise body -> self-review -> lint/export if requested.
-7. For source-sensitive claims, cite or ask for the specific policy/source. Do not fabricate policy basis, statistics,领导讲话,会议精神, or official decisions.
+3. For policy-sensitive tasks, run policy research first: official source search -> citation ledger -> citation check -> draft.
+4. For messy materials, build a dossier with `scripts/prepare_dossier.py` or maintain a fact ledger: `已确认事实`, `用户判断`, `待核实`, `建议措辞`.
+5. Check five anchors: purpose, audience, facts, structure, tone.
+6. If key facts are missing, either ask 1-3 focused questions or produce a fillable skeleton with bracketed placeholders.
+7. Draft with this order: define purpose -> choose文种 -> verify sources -> structure content -> write concise body -> self-review -> lint/export if requested.
+8. For source-sensitive claims, cite or ask for the specific policy/source. Do not fabricate policy basis, statistics,领导讲话,会议精神, or official decisions.
 
 ## Load References As Needed
 
@@ -28,6 +29,7 @@ Treat the gathered local references as guidance, not as permission to invent fac
 - For the product quality bar and user expectations this skill should meet, read `references/quality-bar.md`.
 - For legal/制度底线 and official document types, read `references/core-rules.md`.
 - For messy source materials, source hierarchy, and auditable fact ledgers, read `references/material-workflow.md`.
+- For current policy, laws, official releases,领导讲话, meeting communiques, and citation ledgers, read `references/policy-research.md`.
 - For concrete templates and section structures, read `references/document-types.md`.
 - For writing method, style, revision strategy, and avoiding空心公文, read `references/writing-method.md`.
 - For language polishing modes, empty wording, overclaiming, and official tone repair, read `references/language-polishing.md`.
@@ -46,6 +48,7 @@ Treat the gathered local references as guidance, not as permission to invent fac
 - Match文种 to行文关系: 上行 usually 请示/报告; 下行 usually 通知/通报/批复/意见; 平行 or non-subordinate usually 函.
 - Keep one main matter per request when drafting请示. Do not mix report and request functions.
 - Use placeholders like `[发文机关]`, `[日期]`, `[依据文件名称]` when facts are unknown.
+- For current policy or领导讲话 claims, use official-source citation ledgers. Authoritative media can be background or discovery leads, not a replacement for official policy originals.
 - Preserve confidentiality: if user content appears涉密 or sensitive, warn and draft only with sanitized placeholders.
 - Separate content drafting from formal issuance: do not add red headers, document numbers, signatories, seals, or approval language unless the user supplied authorized values or placeholders and the task is only preparing a draft.
 - Prefer the user's current unit template over generic GB/T-style defaults when the user provides a template.
@@ -56,7 +59,9 @@ Treat the gathered local references as guidance, not as permission to invent fac
 - If using JSON spec, run `scripts/render_spec.py <spec.json> -o <draft.md>` before lint/export.
 - For offline assistants or web chat tools that cannot install skills, run `scripts/build_prompt_pack.py --doc-type <doc-type> --task <task> -o <prompt.md>` and paste the generated prompt pack into the target tool.
 - For multiple raw material files, run `scripts/prepare_dossier.py <materials...> --task <task> -o <materials.md>` before drafting, then draft from the dossier.
+- For policy-sensitive topics, run `scripts/policy_research.py --topic <topic> -o <policy-ledger.md>`, fill the ledger from official sources, then run `scripts/check_citations.py <policy-ledger.md> --require-citations`.
 - Run `scripts/check_sections.py <doc-type> <draft.md>` when reviewing or before file export.
+- Run `scripts/check_citations.py <draft.md>` when the draft includes policy依据,法律法规,领导讲话,会议精神, official data, or standards.
 - Run `scripts/check_language.py <draft.md>` when polishing, removing AI-like wording, or reviewing high-stakes drafts.
 - Run `scripts/check_fonts.py --verify-assets` after changing bundled fonts, then run `scripts/check_fonts.py --draft <draft.md>` before Word export. If authorized font files are in `assets/fonts`, use `--install-assets`.
 - Run `scripts/generate_docx.py <draft.md> -o <output.docx> --doc-type <doc-type> --install-font-assets` when the user asks for Word output. The script creates `-vNN` files instead of overwriting unless `--overwrite` is explicit.

@@ -11,6 +11,7 @@ These are ergonomic command patterns, not a separate CLI:
 - `/gongwen draft 报告 <topic>`: draft a report.
 - `/gongwen review <draft>`: review type, authority, facts, structure, language, format, and confidentiality.
 - `/gongwen collect <materials>`: build a material dossier and fact ledger before drafting.
+- `/gongwen policy <topic>`: build a policy-research ledger before drafting.
 - `/gongwen polish <draft>`: improve language while preserving facts and authority boundaries.
 - `/gongwen export <draft.md>`: lint, check fonts, and export Word.
 - `/gongwen format`: explain current formatting rules and required fonts.
@@ -31,6 +32,10 @@ Use when the user asks for a serious公文 or Word file. Build a fact ledger, ro
 
 Use when the user provides multiple files, pasted notes, public excerpts, or a vague topic with raw materials. Prepare a source table, confirmed-looking facts, judgment/claim lines, and focused confirmation questions before drafting. Use `scripts/prepare_dossier.py` for local text files.
 
+### Policy Research
+
+Use when the draft depends on current policy, laws, department rules, official statistics,领导讲话, or meeting communiques. Build a policy ledger with `scripts/policy_research.py`, verify official sources manually or through browser/search tools, then run `scripts/check_citations.py --require-citations` before drafting.
+
 ### Review / Rewrite
 
 Lead with risks and actionable fixes. Cover:
@@ -48,13 +53,14 @@ For language-only polishing, use the lightest mode from `references/language-pol
 Use controlled Markdown or JSON spec, then:
 
 1. `scripts/render_spec.py spec.json -o draft.md` if input is JSON.
-2. `scripts/check_sections.py <doc-type> draft.md`.
-3. `scripts/check_fonts.py --draft draft.md`.
-4. `scripts/generate_docx.py draft.md -o output.docx --doc-type <doc-type> --install-font-assets`.
+2. `scripts/check_citations.py draft.md` when the draft includes policy/current-source claims.
+3. `scripts/check_sections.py <doc-type> draft.md`.
+4. `scripts/check_fonts.py --draft draft.md`.
+5. `scripts/generate_docx.py draft.md -o output.docx --doc-type <doc-type> --install-font-assets`.
 
 ## Source Modes
 
-- Online/current-policy mode: verify current policies, standards, dates, and facts from official sources before writing them as facts.
+- Online/current-policy mode: verify current policies, standards, dates,领导讲话, and facts from official sources before writing them as facts. Keep a citation ledger and run the citation checker when sources are provided.
 - Offline mode: use only user-provided materials and local references. Mark unverified claims as `待核实`.
 - Mixed mode: facts from user materials remain user-supplied; official/current claims still require verification.
 
