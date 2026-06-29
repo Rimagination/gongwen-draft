@@ -96,9 +96,11 @@ def main() -> None:
         fail(f"document-types.md missing sections: {', '.join(missing_headings)}")
 
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
-    if "法定公文（15 种，完整支持）" not in readme:
+    if "支持 23 种公文与政务材料写作样式" not in readme:
+        fail("README must state 23 official-document and formal-material styles.")
+    if "15 种法定公文文种" not in readme:
         fail("README must state 15 statutory document types.")
-    if "扩展政务材料（8 类" not in readme:
+    if "8 类常见机关材料" not in readme:
         fail("README must state 8 extended formal-material categories.")
     if "后续将逐步补充专用模板" in readme:
         fail("README still claims extended templates are incomplete.")
