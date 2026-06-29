@@ -1,6 +1,6 @@
-# gongwen-draft
-
 ![gongwen-draft Word 草稿预览](assets/readme-banner.png)
+
+# gongwen-draft
 
 gongwen-draft 是一个中文公文与政务材料写作 Agent skill，用于起草、改写、审核、政策核验和 Word 草稿导出。
 
