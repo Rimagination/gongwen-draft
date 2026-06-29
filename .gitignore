@@ -1,0 +1,11 @@
+# Local/private font assets. Do not publish without redistribution permission.
+assets/fonts/*.ttf
+assets/fonts/*.TTF
+assets/fonts/*.otf
+assets/fonts/*.OTF
+
+# Generated documents and local caches.
+*.docx
+*.pdf
+__pycache__/
+*.pyc
