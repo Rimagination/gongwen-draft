@@ -13,7 +13,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Install validation dependency
-        run: python -m pip install fonttools
+        run: python -m pip install fonttools python-docx
       - name: Self test
         run: python scripts/self_test.py
       - name: Coverage gate
