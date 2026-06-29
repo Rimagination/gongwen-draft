@@ -22,7 +22,7 @@ gongwen-draft 支持 23 种公文与政务材料写作样式：15 种法定公�
 
 <img src="assets/agent-logos/qoder.png" alt="Qoder" width="20" height="20" align="absmiddle"> [QoderWork CN / Qoder CN](https://www.aliyun.com/product/lingma)：适合中文办公、材料整理和写作工作流。
 
-<img src="assets/agent-logos/zcode.png" alt="ZCode" width="20" height="20" align="absmiddle"> [ZCode](https://zcode.z.ai/)：适合技能维护、长任务和深度调整。
+<img src="assets/agent-logos/zcode-official.png" alt="ZCode" width="20" height="20" align="absmiddle"> [ZCode](https://zcode.z.ai/)：适合技能维护、长任务和深度调整。
 
 <img src="assets/agent-logos/workbuddy.svg" alt="WorkBuddy" width="20" height="20" align="absmiddle"> [WorkBuddy](https://www.codebuddy.cn/work/)：适合办公场景、多任务执行和交付型工作。
 
