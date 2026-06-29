@@ -7,9 +7,11 @@ import tempfile
 from pathlib import Path
 
 from build_prompt_pack import build_prompt
+from check_language import check_language
 from check_coverage import main as check_coverage_main
 from check_sections import check
 from generate_docx import unique_output_path
+from prepare_dossier import build_dossier
 from render_spec import normalize_spec
 
 
@@ -81,6 +83,28 @@ def test_coverage() -> None:
     check_coverage_main()
 
 
+def test_material_dossier() -> None:
+    with tempfile.TemporaryDirectory() as tmpdir:
+        material = Path(tmpdir) / "materials.md"
+        material.write_text(
+            "2026年6月30日，区水利局完成12项排查。计划取得显著成效。\n",
+            encoding="utf-8",
+        )
+        dossier = build_dossier([material], "整理防汛情况专报")
+        assert "区水利局" in dossier
+        assert "12项" in dossier
+        assert "显著成效" in dossier
+        assert "待核实" in dossier
+
+
+def test_language_lint() -> None:
+    issues = check_language("我局高度重视该项工作，取得显著成效，大家纷纷点赞。")
+    messages = "\n".join(message for _, message in issues)
+    assert "事实、数据或正式评价" in messages
+    assert "表述偏泛" in messages
+    assert "口语或网络表达" in messages
+
+
 def main() -> None:
     test_render_spec()
     test_high_risk_lint()
@@ -88,6 +112,8 @@ def main() -> None:
     test_unique_output_path()
     test_prompt_pack()
     test_coverage()
+    test_material_dossier()
+    test_language_lint()
     print("OK: gongwen-draft self-tests passed.")
 
 

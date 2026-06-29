@@ -11,7 +11,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_REFERENCES = [
     "references/core-rules.md",
+    "references/material-workflow.md",
     "references/writing-method.md",
+    "references/language-polishing.md",
     "references/punctuation-style.md",
     "references/review-checklist.md",
     "references/format-output.md",

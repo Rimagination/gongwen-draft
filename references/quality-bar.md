@@ -13,7 +13,7 @@ Use this file to judge whether `gongwen-draft` is better than a generic公文写
 
 3. It should be useful with messy materials.
    - The user may paste notes, meeting minutes, bullet points, WeChat article excerpts, or half-written drafts.
-   - The skill should extract facts, build a structure, and ask only the few questions that matter.
+   - The skill should extract facts, build a source-aware material dossier, and ask only the few questions that matter.
 
 4. It should separate facts from wording.
    - Maintain a mental or written fact ledger: confirmed facts, user judgments, to-verify items, and suggested wording.
@@ -54,6 +54,8 @@ Compared with many lightweight community skills, `gongwen-draft` should add:
 
 - Explicit community citations and source hierarchy.
 - A fact-ledger discipline before drafting.
+- A material intake workflow that separates source table, facts, user judgments, to-verify items, and suggested wording.
+- A language-polishing workflow that can normalize, tighten, formalize, de-risk, or rebuild without inventing facts.
 - High-risk linting as a first-class workflow step.
 - Deterministic Markdown/JSON -> `.docx` generation, including generic红头版头 controls, strict font validation, first-page page-number handling, and non-overwrite versioning.
 - Separate references for routing, document types, review, output, project lessons, and citations.

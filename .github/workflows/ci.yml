@@ -18,6 +18,14 @@ jobs:
         run: python scripts/self_test.py
       - name: Coverage gate
         run: python scripts/check_coverage.py
+      - name: Language lint smoke test
+        run: |
+          printf '我局高度重视该项工作，取得显著成效，大家纷纷点赞。\n' > /tmp/language.md
+          python scripts/check_language.py /tmp/language.md
+      - name: Material dossier smoke test
+        run: |
+          printf '2026年6月30日，区水利局完成12项排查。计划取得显著成效。\n' > /tmp/materials.md
+          python scripts/prepare_dossier.py /tmp/materials.md --task "整理防汛情况专报" -o /tmp/dossier.md
       - name: Font asset catalog
         run: python scripts/check_fonts.py --verify-assets
       - name: Build sample offline prompt pack
