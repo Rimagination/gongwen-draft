@@ -16,6 +16,16 @@ Required fonts:
 
 Do not silently replace these with Noto, Microsoft YaHei, SimSun, or other generic Chinese fonts. If the required fonts are missing, stop export and report exactly which fonts are missing.
 
+## Configuration Modes
+
+Use one of three modes:
+
+1. Default公文字体 mode: use `founder-gongwen` and require the exact fonts listed above.
+2. Unit template mode: use `font_profile: custom` only when the user provides exact unit-required font names.
+3. Authorized asset mode: install or use font files placed under `assets/fonts` after verifying `catalog.toml`.
+
+Do not guess custom font names from a screenshot or from visual similarity. Ask the user for the exact font names used by the unit template, or inspect an authorized template when provided.
+
 ## Official Channel
 
 方正字库 official page for the公文写作字库:
@@ -56,9 +66,19 @@ The export script checks installed fonts before saving. Font assets are not trea
 
 Automated asset installation currently supports Windows current-user fonts. On macOS or Linux, install authorized fonts through the operating system, then run `python scripts/check_fonts.py --draft draft.md` again.
 
+## User-Facing Font Setup
+
+When the user asks how to configure fonts, explain it in plain language:
+
+- Default export uses 方正小标宋简体、仿宋_GB2312、黑体、楷体_GB2312 and 宋体.
+- If fonts are missing, export stops and reports the missing names.
+- On Windows, authorized bundled assets can be installed for the current user.
+- If the unit template requires different fonts, the user must provide exact font names and ensure they are installed or supplied as authorized assets.
+- A Word file may look different on another machine unless that machine has the same fonts installed.
+
 ## Publication Boundary
 
-Bundled font binaries are assets for local authorized use. Before publishing a public repository, release package, marketplace skill, or mirror that includes `assets/fonts/*.ttf`, confirm the font license permits redistribution. If redistribution is not confirmed, publish the skill without font binaries and keep `catalog.toml` plus official/authorized acquisition instructions.
+Bundled font binaries are provided as assets for official-document draft formatting. Before using, mirroring, repackaging, or redistributing them, confirm the font license and organizational authorization requirements. If redistribution is not permitted in a downstream package, publish that package without font binaries and keep `catalog.toml` plus official/authorized acquisition instructions.
 
 ## Unit Template Overrides
 
