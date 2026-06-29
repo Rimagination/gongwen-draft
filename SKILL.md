@@ -66,6 +66,7 @@ Treat the gathered local references as guidance, not as permission to invent fac
 - Run `scripts/check_fonts.py --verify-assets` after changing bundled fonts, then run `scripts/check_fonts.py --draft <draft.md>` before Word export. If authorized font files are in `assets/fonts`, use `--install-assets`.
 - Run `scripts/generate_docx.py <draft.md> -o <output.docx> --doc-type <doc-type> --install-font-assets` when the user asks for Word output. The script creates `-vNN` files instead of overwriting unless `--overwrite` is explicit.
 - Run `scripts/check_type_consistency.py` after changing document types, templates, README coverage language, or lint document-type lists.
+- Run `scripts/self_test.py` after modifying any script to verify basic correctness of all helper modules.
 - For generic红头版头 output, use controlled front matter such as `issuer_mark`, `doc_number`, and `issue_person`; never invent real机关名称、发文字号、签发人、印章 or approval status.
 - Do not silently replace required公文字体 with generic fonts. If fonts are missing, stop and use official/authorized channels.
 - If Python lacks `python-docx`, install or use the bundled workspace Python/libraries when available.
@@ -100,4 +101,6 @@ When exporting, provide:
 - Do not quote long passages from reference articles. Summarize methods and cite source names where useful.
 - Do not treat training articles or转载文章 as normative documents. Use official regulations and standards first.
 - Do not copy another public project's long rules verbatim into outputs. Use inspected projects as engineering reference only.
+- Do not confuse near-synonyms common in公文: `制定/制订`, `截至/截止`, `权利/权力`, `受权/授权`, `决定/决议`, `公告/通告`, `批复/复函`. When in doubt, check `review-checklist.md` Section F or the governing regulation.
+- Do not use abbreviated or informal names for行政区域, institutions, or official positions without the full formal name being established first in the same document.
 - Do not remove community citations merely because a rule has been rewritten locally; provenance should remain visible.
